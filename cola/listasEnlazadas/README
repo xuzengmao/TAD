@@ -10,7 +10,7 @@ Definición: Tipo especial de lista con la restricción de que las insercciones 
 Especificación:
     - colaCreaVacia(c): Inicia o crea la cola como una cola vacia, sin ningún elemento.
     - colaVacia(c): Devuelve verdadero si la cola c está vacía, y falso en caso contrario.
-    - colaInserta(c, x): Añade el elemento x en la posición a continuación del fondo, o último elemento de la cola, pasando a ser el nuevo fondo de la misma.
+    - colaInserta(c,x): Añade el elemento x en la posición a continuación del fondo, o último elemento de la cola, pasando a ser el nuevo fondo de la misma.
     - colaSuprime(c): Elimina y devuelve el elemento del frente o primer elemento de la cola, pasando a ser el nuevo frente el siguiente elemento.
 
 Implementación: Mediante listas simplemente enlazadas sin nodo ficticio. Se representa el tipoCola mediante un registro con dos campos, uno apuntando al frente y otro al fondo.
