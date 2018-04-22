@@ -15,4 +15,4 @@ Especificación:
 
 Implementación: Mediante listas simplemente enlazadas sin nodo ficticio. Se representa el tipoCola mediante un registro con dos campos, uno apuntando al frente y otro al fondo.
 
-NOTA1: Para modificar el tipo de elemento que guarda la cola, basta con modificar el typedef de la línea 14 del fichero cola.h.
+Nota1: Para modificar el tipo de elemento que guarda la cola, basta con modificar el typedef de la línea 14 del fichero cola.h.
