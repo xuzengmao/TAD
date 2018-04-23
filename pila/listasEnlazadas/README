@@ -3,10 +3,10 @@ Correo para cualquier duda o sugerencia: xuzengmao@usal.es
 GitHub: https://github.com/xuzengmao
 
 
-#Tipo Abstracto de Datos: Pila
+Tipo Abstracto de Datos: Pila
 
 Fuente: pila.c pila.h
-	- https://github.com/xuzengmao/TAD/tree/master/pila/listasEnlazadas
+    - https://github.com/xuzengmao/TAD/tree/master/pila/listasEnlazadas
 
 Definición: Tipo especial de lista con la restricción de que las insercciones y eliminaciones sólo pueden realizarse en una posición, denominada tope o cima de la lista. Se trata de una lista de tipo LIFO (Last  In, First Out).
 

@@ -3,10 +3,10 @@ Correo para cualquier duda o sugerencia: xuzengmao@usal.es
 GitHub: https://github.com/xuzengmao
 
 
-#Tipo Abstracto de Datos: Cola
+Tipo Abstracto de Datos: Cola
 
 Fuente: cola.c cola.h
-	- https://github.com/xuzengmao/TAD/tree/master/cola/listasEnlazadas
+    - https://github.com/xuzengmao/TAD/tree/master/cola/listasEnlazadas
 
 Definición: Tipo especial de lista con la restricción de que las insercciones se realizan por un extremo de la lista denominado fondo y las eliminaciones por el otro extremo, denominado frente.
 
