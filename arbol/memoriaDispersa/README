@@ -3,7 +3,7 @@ Correo para cualquier duda o sugerencia: xuzengmao@usal.es
 GitHub: https://github.com/xuzengmao
 
 
-Tipo Abstracto de Datos: Arbol
+Tipo Abstracto de Datos: Arbol Binario
 
 Fuente principal:
     - Arbol: arbol.c arbol.h
@@ -15,3 +15,27 @@ Fuente auxiliar:
     - Pila: pila.c pila.h
         -> https://github.com/xuzengmao/TAD/tree/master/pila/listasEnlazadas
 
+Definición: conjunto finito de nodos que puede ser vacío o puede distribuirse en una raíz y un par de árboles binarios llamados subárboles izquierdo y derecho de la raíz, los cuales, también pueden estar vacíos.
+
+Implementación: mediante memoria dispersa (punteros). Cada celda se enlaza, como máximo, con otras dos siguiendo la estructura del árbol que representa. Cada celda almacenará la información del nodo y dos apuntadores para enlazar con las raíces de los subárboles izquierdo y derecho del nodo. El tipo Arbol consiste en un puntero a un nodo.
+
+Especificación:
+    - Arbol creaNodo(tipoInfo info): crea un árbol con un único nodo. Devuelve el árbol si tuvo éxito y NULL si ha fallado la reserva de memoria.
+    - Arbol anula(Arbol raiz): convierte el árbol raiz en un árbol vacío, liberando la memoria que ocupan sus nodos.
+    - void preOrden(Arbol raiz): es un recorrido en profundidad basados en las relaciones padre-hijo de los nodos según el orden: 1 - visitar la raíz. 2 - recorrer el subárbol izquierdo. 3 - recorrer el subárbol derecho. 
+    - void enOrden(Arbol raiz): es un recorrido en profundidad basados en las relaciones padre-hijo de los nodos según el orden: 1 - recorrer el subárbol izquierdo. 2 - visitar la raíz. 3 - recorrer el subárbol derecho.
+    - void postOrden(Arbol raiz): es un recorrido en profundidad basados en las relaciones padre-hijo de los nodos según el orden: 1 - recorrer el subárbol izquierdo. 2 - recorrer el subárbol derecho. 3 - visitar la raíz.
+    - void amplitud(Arbol raiz): es un recorrido en amplitud o por niveles basados en la distancia de cada nodo a la raíz.
+    - int altura(Arbol raiz): calcula y devuelve la altura de un árbol binario, es decir, el número de aristas en el camino más largo desde el nodo raíz hasta una hoja, teniendo en cuenta que los nodos hoja tiene altura 0.
+    - int numNodos(Arbol raiz): calcula y devuelve el número de nodos del árbol binario.
+    - int sustituye(Arbol raiz, tipoInfo x, tipoInfo y): busca en el árbol los nodos que contienen el valor x en el campo de información, sustituye ese valor por y, devolviendo el número de sustituciones realizadas.
+    - int numNodosHoja(Arbol raiz): calcula y devuelve el número de nodos hoja del árbol binario.
+    - int numNodosInternos(Arbol raiz): calcula y devuelve el número de nodos internos del árbol binario.
+    - int numHijoUnico(Arbol raiz): calcula y devuelve el número de nodos del árbol que tienen un sólo hijo.
+    - Arbol buscarMax(Arbol raiz): busca y devuelve el nodo del árbol binario que contiene el valor máximo en su campo de información.
+    - Arbol buscarMin(Arbol raiz): busca y devuelve el nodo del árbol binario que contiene el valor mínimo en su campo de información.
+    - int similares(Arbol r1, Arbol r2): comprueba si los árboles son similares devolviendo un 1 si lo son y un 0 en caso contrario. Dos árboles son similares si tienen la misma estructura.
+    - int equivalentes(Arbol r1, Arbol r2): comprueba si los árboles son equivalentes devolviendo un 1 si lo son y un 0 en caso contrario. Dos árboles son son equivalentes si tienen la misma estructura y el mismo contenido en sus nodos.
+    - Arbol especular(Arbol raiz): crea un nuevo árbol binario que es la imagen especular del árbol raiz, es decir, todos los subárboles derechos se convierten en subárboles izquierdos y viceversa.
+
+Nota: Para modificar el tipo de elemento del campo de información basta con modificar el typedef de la línea 18 del fichero arbol.h. Algunas funciones sólo funcionarán en determinados tipos, por lo que antes de usar dichas funciones se tendrá que modificar.
