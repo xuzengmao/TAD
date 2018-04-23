@@ -1,0 +1,20 @@
+Autor: Xuzeng Mao
+Correo para cualquier duda o sugerencia: xuzengmao@usal.es
+GitHub: https://github.com/xuzengmao
+Fuente: cola.c cola.h
+
+Tipo Abstracto de Datos: Cola
+
+Definición: Tipo especial de lista con la restricción de que las insercciones se realizan por un extremo de la lista denominado fondo y las eliminaciones por el otro extremo, denominado frente.
+
+Especificación:
+    - colaCreaVacia(c): Inicia o crea la cola como una cola vacia, sin ningún elemento.
+    - colaVacia(c): Devuelve verdadero si la cola c está vacía, y falso en caso contrario.
+    - colaInserta(c,x): Añade el elemento x en la posición a continuación del fondo, o último elemento de la cola, pasando a ser el nuevo fondo de la misma.
+    - colaSuprime(c): Elimina y devuelve el elemento del frente o primer elemento de la cola, pasando a ser el nuevo frente el siguiente elemento.
+
+Implementación: Mediante una matriz circular donde frente y fondo pasan al comienzo de la matriz al alcanzar el final de la misma. El tipo cola es un registro con los siguientes campos: el tamaño, los índices de frente y fondo, y un array de tipoElemento.
+
+Nota1: La capacidad máxima de la cola es de 100 elementos. Si se quiere aumentar o disminuir la capacidad, basta con modificar el define de la línea 14 del fichero cola.h.
+
+Nota2: Para modificar el tipo de elemento que guarda la cola, basta con modificar el typedef de la línea 16 del fichero cola.h.
