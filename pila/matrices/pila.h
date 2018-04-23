@@ -4,7 +4,7 @@
 /*   Autor: Xuzeng Mao                                                      */
 /*   Correo para cualquier duda o sugerencia: xuzengmao@usal.es             */
 /*   GitHub: https://github.com/xuzengmao                                   */
-/*   Fuente: cola.c cola.h                                                  */
+/*   Fuente: pila.c pila.h                                                  */
 /****************************************************************************/
 
 
