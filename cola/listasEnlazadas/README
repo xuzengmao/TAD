@@ -13,6 +13,6 @@ Especificación:
     - colaInserta(c,x): Añade el elemento x en la posición a continuación del fondo, o último elemento de la cola, pasando a ser el nuevo fondo de la misma.
     - colaSuprime(c): Elimina y devuelve el elemento del frente o primer elemento de la cola, pasando a ser el nuevo frente el siguiente elemento.
 
-Implementación: Mediante listas simplemente enlazadas sin nodo ficticio. Se representa el tipoCola mediante un registro con dos campos, uno apuntando al frente y otro al fondo.
+Implementación: Mediante listas simplemente enlazadas sin nodo ficticio. El tipo cola es un registro con dos campos, uno apuntando al frente y otro al fondo.
 
 Nota: Para modificar el tipo de elemento que guarda la cola, basta con modificar el typedef de la línea 14 del fichero cola.h.
