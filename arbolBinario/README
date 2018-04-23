@@ -7,7 +7,7 @@ Tipo Abstracto de Datos: Arbol Binario
 
 Fuente principal:
     - Arbol: arbol.c arbol.h
-        -> https://github.com/xuzengmao/TAD/tree/master/arbol/memoriaDispersa
+        -> https://github.com/xuzengmao/TAD/tree/master/arbolBinario
 
 Fuente auxiliar:
     - Cola: cola.c cola.h
