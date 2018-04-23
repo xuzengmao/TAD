@@ -1,0 +1,17 @@
+Autor: Xuzeng Mao
+Correo para cualquier duda o sugerencia: xuzengmao@usal.es
+GitHub: https://github.com/xuzengmao
+
+
+Tipo Abstracto de Datos: Arbol
+
+Fuente principal:
+    - Arbol: arbol.c arbol.h
+        -> https://github.com/xuzengmao/TAD/tree/master/arbol/memoriaDispersa
+
+Fuente auxiliar:
+    - Cola: cola.c cola.h
+        -> https://github.com/xuzengmao/TAD/tree/master/cola/listasEnlazadas
+    - Pila: pila.c pila.h
+        -> https://github.com/xuzengmao/TAD/tree/master/pila/listasEnlazadas
+
