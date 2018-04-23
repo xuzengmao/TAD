@@ -1,0 +1,18 @@
+Autor: Xuzeng Mao
+Correo para cualquier duda o sugerencia: xuzengmao@usal.es
+GitHub: https://github.com/xuzengmao
+Fuente: pila.c pila.h
+
+Tipo Abstracto de Datos: Pila
+
+Definición: Tipo especial de lista con la restricción de que las insercciones y eliminaciones sólo pueden realizarse en una posición, denominada tope o cima de la lista. Se trata de una lista de tipo LIFO (Last  In, First Out).
+
+Especificación:
+    - pilaCreaVacia(p): Inicia o crea la pila p como una pila vacía, sin ningún elemento.
+    - pilaVacia(p): Devuelve verdadero si la pila p está vacía, y falso en caso contrario.
+    - pilaInserta(p,x): Añade el elemento x en la posición a continuación del tope o cima pasando a ser este el nuevo tope o cima de la pila.
+    - pilaSuprime(p): Devuelve y elimina el elemento del tope o cima de la pila.
+
+Implementación: Mediante listas simplemente enlazadas sin nodo ficticio. El tipo pila es un registro de un solo campo, que apunta a la cima de la pila, que es el primer nodo de la lista enlazada.
+
+Nota: Para modificar el tipo de elemento que guarda la pila, basta con modificar el typedef de la línea 14 del fichero pila.h.
