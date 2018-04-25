@@ -1,0 +1,20 @@
+Autor: Xuzeng Mao
+Correo para cualquier duda o sugerencia: xuzengmao@usal.es
+GitHub: https://github.com/xuzengmao
+
+
+Tipo Abstracto de Datos: Montículo Binario
+
+Fuente principal:
+    - Monticulo: monticulo.c monticulo.h
+        -> https://github.com/xuzengmao/TAD/tree/master/monticuloBinario
+
+Definición:
+
+Implementación:
+
+Especificación:
+
+Nota1: La capacidad máxima del montículo es de 100 elementos. Si se quiere aumentar o disminuir la capacidad, basta con modificar el define de la línea 15 del fichero monticulo.h.
+
+Nota2: Para modificar el tipo de información que guarda el montículo, basta con modificar el typedef de la línea 18 del fichero monticulo.h.
