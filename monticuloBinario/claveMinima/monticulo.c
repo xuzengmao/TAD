@@ -43,7 +43,7 @@ int eliminarMinimo(Monticulo *m, tipoElemento *minimo) {
 		return -1;
 
 	*minimo = m->elemento[1];
-	m->elemento[1] = m->elemento[m->tammano];
+	m->elemento[1] = m->elemento[m->tamanno];
 	m->tamanno--;
 	filtradoDescendente(m, 1);
 }
@@ -87,7 +87,7 @@ void heapsort(Monticulo *m) {
 
 	creaMonticulo(m);
 
-	while(!vacioMonticulo(*m)) {
+	while (!vacioMonticulo(*m)) {
 		eliminarMinimo(m, &x);
 		m->elemento[m->tamanno+1] = x;
 	}
@@ -97,34 +97,34 @@ void heapsort(Monticulo *m) {
 
 
 void filtradoAscendente(Monticulo *m, int i) {
-	tipoElemento temp;
+	tipoElemento temp = m->elemento[i];
 
-	while (i > 1 && m->elemento[i/2].clave > m->elemento[i].clave) {
-		temp = m->elemento[i];
+	while (i > 1 && m->elemento[i/2].clave > temp.clave) {
 		m->elemento[i] = m->elemento[i/2];
-		m->elemento[i/2] = temp;
 		i /= 2;
 	}
+
+	m->elemento[i] = temp;
 }
 
 
 void filtradoDescendente(Monticulo *m, int i) {
 	int hijo, finFiltrado = 0;
-	tipoElemento temp;
+	tipoElemento temp = m->elemento[i];
 
 	while (2*i <= m->tamanno && !finFiltrado) {
-		hijo 2*i;
+		hijo = 2*i;
 
 		if (hijo != m->tamanno)
 			if (m->elemento[hijo+1].clave < m->elemento[hijo].clave)
 				hijo++;
 
-		if (m->elemento[i].clave > m->elemento[hijo].clave) {
-			temp = m->elemento[i];
+		if (temp.clave > m->elemento[hijo].clave) {
 			m->elemento[i] = m->elemento[hijo];
-			m->elemento[hijo] = temp;
 			i = hijo;
 		} else 
 			finFiltrado = 1;
 	}
+
+	m->elemento[i] = temp;
 }
