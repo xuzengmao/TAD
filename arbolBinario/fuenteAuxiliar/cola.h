@@ -19,8 +19,8 @@
 
 typedef Arbol tipoElemento;
 
-#ifndef __TIPOCELDA
-#define __TIPOCELDA
+#ifndef TIPO_CELDA
+#define TIPO_CELDA
 
 typedef struct tipoCelda { 
 	tipoElemento elemento; 
