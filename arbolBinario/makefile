@@ -3,11 +3,11 @@
 arbol.o: arbol.c arbol.h
 	gcc -c arbol.c
 
-cola.o: fuenteAuxiliar/cola.c fuenteAuxiliar/cola.h
-	gcc -c fuenteAuxiliar/cola.c
+fuenteAuxiliar/cola.o: fuenteAuxiliar/cola.c fuenteAuxiliar/cola.h
+	gcc -c fuenteAuxiliar/cola.c -o fuenteAuxiliar/cola.o
 
-pila.o: fuenteAuxiliar/pila.c fuenteAuxiliar/pila.h
-	gcc -c fuenteAuxiliar/pila.c
+fuenteAuxiliar/pila.o: fuenteAuxiliar/pila.c fuenteAuxiliar/pila.h
+	gcc -c fuenteAuxiliar/pila.c -o fuenteAuxiliar/pila.o
 
 clean:
-	rm -rfv *.o
+	rm -rfv *.o */*.o
