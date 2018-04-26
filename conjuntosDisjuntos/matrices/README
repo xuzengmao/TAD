@@ -15,4 +15,4 @@ Implementación:
 
 Especificación:
 
-Nota1: La capacidad máxima del montículo es de 16 elementos. Si se quiere aumentar o disminuir la capacidad, basta con modificar el define de la línea 15 del fichero conjuntos.h.
+Nota: La estructura de conjuntos disjuntos o partición tiene 16 elementos. Si se quiere cambiar el número de elementos, basta con modificar el define de la línea 15 del fichero conjuntos.h.
