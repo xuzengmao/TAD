@@ -23,6 +23,6 @@ tipoElemento buscar(particion C, tipoElemento x);
 void unir(particion C, tipoElemento x, tipoElemento y);
 
 void verParticion(particion C);
-void verClaseEquivalencia(tipoElemento x, particion P);
+void verClaseEquivalencia(particion C, tipoElemento x);
 
 #endif
