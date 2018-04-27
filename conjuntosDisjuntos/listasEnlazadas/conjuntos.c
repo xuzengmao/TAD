@@ -21,8 +21,8 @@ void crea(particion C) {
 	for (i = 0; i < MAXIMO; i++) {
 		C[i].primero = malloc(sizeof(tipoCelda));
 		C[i].ultimo = C[i].primero;
-		C[i].primer->elemento = i;
-		C[i].sig = NULL;
+		C[i].primero->elemento = i;
+		C[i].primero->sig = NULL;
 	}
 }
 
@@ -89,4 +89,20 @@ void verClaseEquivalencia(particion C, tipoElemento x) {
 	}
 
 	printf("\n\n");
+}
+
+
+void liberarParticion(particion C) {
+	tipoCelda *aBorrar;
+	int i;
+
+	for (i = 0; i < MAXIMO; i++) {
+		while (C[i].primero != NULL) {
+			aBorrar = C[i].primero;
+			C[i].primero = C[i].primero->sig;
+			free(aBorrar);
+		}
+
+		C[i].ultimo = NULL;
+	}
 }

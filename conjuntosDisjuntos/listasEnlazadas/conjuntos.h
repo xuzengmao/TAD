@@ -39,5 +39,6 @@ void unir(particion C, tipoElemento x, tipoElemento y);
 
 void verParticion(particion C);
 void verClaseEquivalencia(particion C, tipoElemento x);
+void liberarParticion(particion C);
 
 #endif
