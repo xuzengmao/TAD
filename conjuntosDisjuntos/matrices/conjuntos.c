@@ -30,9 +30,10 @@ tipoElemento buscar(particion C, tipoElemento x) {
 
 void unir(particion C, tipoElemento x, tipoElemento y) {
 	int i;
+	tipoElemento temp =C[y];
 
 	for (i = 0; i < MAXIMO; i++)
-		if (C[i] == C[y])
+		if (C[i] == temp)
 			C[i] = C[x];
 }
 
@@ -53,7 +54,7 @@ void verParticion(particion C) {
 	printf("\n");
 
 	for (i = 0; i < MAXIMO; i++)
-		printf("%2d", i);
+		printf(" %2d", i);
 
 	printf("  indices vector\n\n");
 }
