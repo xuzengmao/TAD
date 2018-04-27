@@ -1,0 +1,18 @@
+Autor: Xuzeng Mao
+Correo para cualquier duda o sugerencia: xuzengmao@usal.es
+GitHub: https://github.com/xuzengmao
+
+
+Tipo Abstracto de Datos: Conjuntos Disjuntos
+
+Fuente principal:
+    - Conjuntos: conjuntos.c conjuntos.h
+        -> https://github.com/xuzengmao/TAD/tree/master/conjuntosDisjuntos/arboles/unionArbitraria
+
+Definición:
+
+Implementación:
+
+Especificación:
+
+Nota: La estructura de conjuntos disjuntos o partición tiene 16 elementos. Si se quiere cambiar el número de elementos, basta con modificar el define de la línea 15 del fichero conjuntos.h.
