@@ -7,7 +7,7 @@ Tipo Abstracto de Datos: Conjuntos Disjuntos
 
 Fuente principal:
     - Conjuntos: conjuntos.c conjuntos.h
-        -> https://github.com/xuzengmao/TAD/tree/master/conjuntosDisjuntos/arboles/compresionDeCaminos/unionPorRango
+        -> https://github.com/xuzengmao/TAD/tree/master/conjuntosDisjuntos/arboles/comprensionDeCaminos/unionPorRango
 
 Definición:
 
