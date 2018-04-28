@@ -41,7 +41,7 @@ void unir(particion C, tipoElemento x, tipoElemento y) {
 		if (C[y] < C[x])
 			C[x] = y;
 		else {
-			C[x]++;
+			C[x]--;
 			C[y] = x;
 		}
 }
