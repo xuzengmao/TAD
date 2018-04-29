@@ -14,64 +14,27 @@
 /****************************************************************************/
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "cola.h"
+#ifndef __PILA_H
+#define __PILA_H
 
+typedef int tipoElementoP;
 
-int colaCreaVacia(Cola *c) {
-	if (c == NULL)
-		return -1;
+#ifndef TIPO_CELDA
+#define TIPO_CELDA
 
-	(*c).fondo = NULL;
-	(*c).frente = NULL;
-	return 0;
-}
-
-
-int colaVacia(Cola *c) {
-	if ((*c).frente == NULL)
-		return 1;
-
-	return 0;
-}
-
-
-int colaInserta(Cola *c, tipoElementoC elemento) {
-	tipoCelda *nuevo;
-
-	if (c == NULL)
-		return -1;
-
-	if (NULL == (nuevo = malloc(sizeof(tipoCelda))))
-		return -2;
+typedef struct tipoCelda { 
+	tipoElementoP elemento; 
+	struct tipoCelda * sig; 
+	} tipoCelda;
 	
-	(*nuevo).elemento = elemento;
-	(*nuevo).sig = NULL;
+#endif
+	
+typedef tipoCelda * Pila;
 
-	if ((*c).frente == NULL)
-		(*c).frente = nuevo;
-	else
-		(*(*c).fondo).sig = nuevo;
-
-	(*c).fondo = nuevo;
-	return 0;
-}
+int pilaCreaVacia(Pila *p);
+int pilaVacia(Pila *p);
+int pilaInserta(Pila *p,tipoElementoP elemento);
+tipoElementoP pilaSuprime(Pila *p);
 
 
-tipoElementoC colaSuprime(Cola *c) {
-	tipoElementoC valor;
-	tipoCelda * aBorrar;
-
-	if (c != NULL && !colaVacia(c)) {
-		valor = (*(*c).frente).elemento;
-		aBorrar = (*c).frente;
-		
-		if (c->fondo == c->frente)
-			c->fondo = NULL;
-		
-		(*c).frente = (*(*c).frente).sig;
-		free(aBorrar);
-		return valor;
-	}
-}
+#endif

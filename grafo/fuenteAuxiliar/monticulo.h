@@ -14,64 +14,35 @@
 /****************************************************************************/
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "cola.h"
+#ifndef __MONTICULO_H
+#define __MONTICULO_H
 
+#define MAXIMO 100
 
-int colaCreaVacia(Cola *c) {
-	if (c == NULL)
-		return -1;
+typedef int tipoClave;
+typedef int tipoInfo;
 
-	(*c).fondo = NULL;
-	(*c).frente = NULL;
-	return 0;
-}
+typedef struct {
+	tipoClave clave;
+	tipoInfo informacion;
+} tipoElemento;
 
+typedef struct {
+	tipoElemento elemento[MAXIMO];
+	int tamanno;
+} Monticulo;
 
-int colaVacia(Cola *c) {
-	if ((*c).frente == NULL)
-		return 1;
+void iniciarMonticulo(Monticulo *m);
+int vacioMonticulo(Monticulo m);
+int insertar(Monticulo *m, tipoElemento x);
+int eliminarMinimo(Monticulo *m, tipoElemento *minimo);
+void incrementarClave(Monticulo *m, int pos, tipoClave cantidad);
+void decrementarClave(Monticulo *m, int pos, tipoClave cantidad);
+int esMonticulo(Monticulo m);
+void creaMonticulo(Monticulo *m);
+void heapsort(Monticulo *m);
 
-	return 0;
-}
+void filtradoAscendente(Monticulo *m, int i);
+void filtradoDescendente(Monticulo *m, int i);
 
-
-int colaInserta(Cola *c, tipoElementoC elemento) {
-	tipoCelda *nuevo;
-
-	if (c == NULL)
-		return -1;
-
-	if (NULL == (nuevo = malloc(sizeof(tipoCelda))))
-		return -2;
-	
-	(*nuevo).elemento = elemento;
-	(*nuevo).sig = NULL;
-
-	if ((*c).frente == NULL)
-		(*c).frente = nuevo;
-	else
-		(*(*c).fondo).sig = nuevo;
-
-	(*c).fondo = nuevo;
-	return 0;
-}
-
-
-tipoElementoC colaSuprime(Cola *c) {
-	tipoElementoC valor;
-	tipoCelda * aBorrar;
-
-	if (c != NULL && !colaVacia(c)) {
-		valor = (*(*c).frente).elemento;
-		aBorrar = (*c).frente;
-		
-		if (c->fondo == c->frente)
-			c->fondo = NULL;
-		
-		(*c).frente = (*(*c).frente).sig;
-		free(aBorrar);
-		return valor;
-	}
-}
+#endif

@@ -56,6 +56,7 @@ int ordenTop(Grafo *g);
 void caminosBasico(Grafo *g, int vInicio);
 void caminos(Grafo *g, int vInicio);
 
+int buscarVerticeDistanciaMinimaNoAlcanzado(Grafo *g);
 void dijkstraBasico(Grafo *g, int vInicio);
 void dijkstra(Grafo *g, int vInicio);
 

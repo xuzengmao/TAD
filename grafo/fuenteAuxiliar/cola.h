@@ -17,13 +17,13 @@
 #ifndef __COLA_H
 #define __COLA_H
 
-typedef int tipoElemento;
+typedef int tipoElementoC;
 
 #ifndef TIPO_CELDA
 #define TIPO_CELDA
 
 typedef struct tipoCelda { 
-	tipoElemento elemento; 
+	tipoElementoC elemento; 
 	struct tipoCelda * sig; 
 	} tipoCelda;
 	
@@ -35,7 +35,7 @@ typedef struct {
 
 int colaCreaVacia(Cola *c);
 int colaVacia(Cola *c);
-int colaInserta(Cola *c, tipoElemento elemento);
-tipoElemento colaSuprime(Cola *c);
+int colaInserta(Cola *c, tipoElementoC elemento);
+tipoElementoC colaSuprime(Cola *c);
 
 #endif

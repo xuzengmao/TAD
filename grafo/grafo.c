@@ -19,6 +19,8 @@
 
 #include "grafo.h"
 #include "fuenteAuxiliar/cola.h"
+#include "fuenteAuxiliar/pila.h"
+#include "fuenteAuxiliar/monticulo.h"
 
 void profundidad(Grafo *g, int vInicio) {
 	pArco p;
@@ -146,6 +148,183 @@ int ordenTop(Grafo *g) {
 
 			p = p->sig;
 		}
+	}
+
+	if (orden == g->orden)
+		return 0;
+
+	return -1;
+}
+
+
+void caminosBasico(Grafo *g, int vInicio) {
+	int distanciaActual;
+	int v, w;
+	pArco p;
+
+	g->directorio[vInicio].distancia = g->directorio[vInicio].anterior = 0;
+
+	for (distanciaActual = 0; distanciaActual < g->orden; distanciaActual++)
+		for (v = 1; v <= g->orden; v++)
+			if (!g->directorio[v].alcanzado && g->directorio[v].distancia == distanciaActual) {
+				g->directorio[v].alcanzado = 1;
+				p = g->directorio[v].lista;
+
+				while (p != NULL) {
+					w = p->v;
+
+					if (g->directorio[w].distancia == INF) {
+						g->directorio[w].distancia = g->directorio[v].distancia + 1;
+						g->directorio[w].anterior = v;
+					}
+
+					p = p->sig;
+				}
+			}
+}
+
+
+void caminos(Grafo *g, int vInicio) {
+	pArco p;
+	int v, w;
+	Cola c;
+
+	g->directorio[vInicio].distancia = g->directorio[vInicio].anterior = 0;
+	colaCreaVacia(&c);
+	colaInserta(&c, vInicio);
+
+	while (!colaVacia(&c)) {
+		v = colaSuprime(&c);
+		p = g->directorio[v].lista;
+
+		while (p != NULL) {
+			w = p->v;
+
+			if (g->directorio[w].distancia == INF) {
+				g->directorio[w].distancia = g->directorio[v].distancia + 1;
+				g->directorio[w].anterior = v;
+				colaInserta(&c, w);
+			}
+
+			p = p->sig;
+		}
+	}
+}
+
+
+int buscarVerticeDistanciaMinimaNoAlcanzado(Grafo *g) {
+	int i, distanciaMinima = INF + 1, v = -1;
+
+	for (i = 1; i <= g->orden; i++)
+		if (!g->directorio[i].alcanzado && g->directorio[i].distancia < distanciaMinima) {
+			distanciaMinima = g->directorio[i].distancia;
+			v = i;
+		}
+
+	return v;
+}
+
+
+void dijkstraBasico(Grafo *g, int vInicio) {
+	pArco p;
+	int i, v, w;
+
+	g->directorio[vInicio].distancia = g->directorio[vInicio].anterior = 0;
+
+	for (i = 1; i <= g->orden; i++) {
+		v = buscarVerticeDistanciaMinimaNoAlcanzado(g);
+		g->directorio[v].alcanzado++;
+		p = g->directorio[v].lista;
+
+		while (p != NULL) {
+			w = p->v;
+
+			if (!g->directorio[w].alcanzado)
+				if (g->directorio[v].distancia + p->peso < g->directorio[w].distancia) {
+					g->directorio[w].distancia = g->directorio[v].distancia + p->peso;
+					g->directorio[w].anterior = v;
+				}
+
+			p = p->sig;
+		}
+	}
+}
+
+
+void dijkstra(Grafo *g, int vInicio) {
+	pArco p;
+	int i, v, w, coste;
+	Monticulo m;
+	tipoElemento x;
+
+	g->directorio[vInicio].distancia = g->directorio[vInicio].anterior = 0;
+	iniciarMonticulo(&m);
+	x.clave = 0;
+	x.informacion = vInicio;
+	insertar(&m, x);
+
+	while (!vacioMonticulo(m)) {
+		eliminarMinimo(&m, &x);
+
+		if (!g->directorio[x.informacion].alcanzado) {
+			v = x.informacion;
+			g->directorio[v].alcanzado++;
+			p = g->directorio[v].lista;
+
+			while (p != NULL) {
+				w = p->v;
+
+				if (!g->directorio[w].alcanzado) {
+					coste = g->directorio[v].distancia + p->peso;
+
+					if (coste < g->directorio[w].distancia) {
+						g->directorio[w].distancia = coste;
+						g->directorio[w].anterior = v;
+						x.clave = coste;
+						x.informacion = w;
+						insertar(&m, x);
+					}
+				}
+
+				p = p->sig;
+			}
+		}
+	}
+}
+
+
+int costeYTrayectoria(Grafo *g, int vInicio, int vFin) {
+	Pila p;
+	int w;
+
+	if (g->directorio[vFin].distancia != INF) {
+		pilaCreaVacia(&p);
+		w = vFin;
+
+		while (w) {
+			pilaInserta(&p, w);
+			w = g->directorio[w].anterior;
+		}
+
+		while(!pilaVacia(&p))
+			printf (" -> %d", pilaSuprime(&p));
+	}
+
+	return g->directorio[vFin].distancia;
+}
+
+
+void todosCaminosMin(Grafo *g, int vInicio) {
+	int i, distancia;
+
+	for (i = 1; i <= g->orden; i++) {
+		printf("\nDe %d a %d:", vInicio, i);
+		distancia = costeYTrayectoria(g, vInicio, i);
+		
+		if (distancia != INF)
+			printf(" | Camino de coste %d.", distancia);
+		else
+			printf("No existe camino.");
 	}
 }
 

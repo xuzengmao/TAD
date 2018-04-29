@@ -16,61 +16,50 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "cola.h"
+#include "pila.h"
 
 
-int colaCreaVacia(Cola *c) {
-	if (c == NULL)
+int pilaCreaVacia(Pila *p) {
+	if (p == NULL)
 		return -1;
 
-	(*c).fondo = NULL;
-	(*c).frente = NULL;
+	*p = NULL;
 	return 0;
 }
 
 
-int colaVacia(Cola *c) {
-	if ((*c).frente == NULL)
+int pilaVacia(Pila *p) {
+	if (*p == NULL)
 		return 1;
 
 	return 0;
 }
 
 
-int colaInserta(Cola *c, tipoElementoC elemento) {
-	tipoCelda *nuevo;
+int pilaInserta(Pila *p, tipoElementoP elemento) {
+	tipoCelda * nuevo;
 
-	if (c == NULL)
+	if (p == NULL) 
 		return -1;
 
 	if (NULL == (nuevo = malloc(sizeof(tipoCelda))))
 		return -2;
-	
+
 	(*nuevo).elemento = elemento;
-	(*nuevo).sig = NULL;
-
-	if ((*c).frente == NULL)
-		(*c).frente = nuevo;
-	else
-		(*(*c).fondo).sig = nuevo;
-
-	(*c).fondo = nuevo;
+	(*nuevo).sig = *p;
+	*p = nuevo;
 	return 0;
 }
 
 
-tipoElementoC colaSuprime(Cola *c) {
-	tipoElementoC valor;
+tipoElementoP pilaSuprime(Pila *p) {
+	tipoElementoP valor;
 	tipoCelda * aBorrar;
 
-	if (c != NULL && !colaVacia(c)) {
-		valor = (*(*c).frente).elemento;
-		aBorrar = (*c).frente;
-		
-		if (c->fondo == c->frente)
-			c->fondo = NULL;
-		
-		(*c).frente = (*(*c).frente).sig;
+	if (p != NULL && !pilaVacia(p)) {
+		valor = (**p).elemento;
+		aBorrar = *p;
+		*p = (**p).sig;
 		free(aBorrar);
 		return valor;
 	}
