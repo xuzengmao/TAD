@@ -1,0 +1,26 @@
+Autor: Xuzeng Mao
+Correo para cualquier duda o sugerencia: xuzengmao@usal.es
+GitHub: https://github.com/xuzengmao
+
+
+Tipo Abstracto de Datos: Arbol Binario
+
+Fuente principal:
+    - Grafo: grafo.c grafo.h
+        -> https://github.com/xuzengmao/TAD/tree/master/grafo
+
+Fuente auxiliar:
+    - Pila: pila.c pila.h
+        -> https://github.com/xuzengmao/TAD/tree/master/pila/listasEnlazadas
+    - Cola: cola.c cola.h
+        -> https://github.com/xuzengmao/TAD/tree/master/cola/listasEnlazadas
+    - Monticulo: monticulo.c monticulo.h
+        -> https://github.com/xuzengmao/TAD/tree/master/monticuloBinario/claveMinima
+    - Conjuntos: conjuntos.c conjuntos.h
+        -> https://github.com/xuzengmao/TAD/tree/master/conjuntosDisjuntos/arboles/comprensionDeCaminos/unionPorRango
+
+Definición:
+
+Implementación:
+
+Especificación:
