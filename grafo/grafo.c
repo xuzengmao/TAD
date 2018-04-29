@@ -198,7 +198,9 @@ void verGrafo(Grafo *g) {
 		if (g->directorio[i].peso == INF)
 			printf("  * |");
 		else
-			printf(" %2d |", g->directorio[i].anterior);
+			printf(" %2d |", g->directorio[i].peso);
+
+		printf(" %2d |",g->directorio[i].anterior);
 
 		p = g->directorio[i].lista;
 
