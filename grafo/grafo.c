@@ -87,6 +87,69 @@ void amplitudMejorado(Grafo *g, int vInicio) {
 }
 
 
+int buscarVerticeGradoCeroNoOrdenTop(Grafo *g) {
+	int i;
+
+	for (i = 1; i <= g->orden; i++)
+		if (!g->directorio[i].gradoEntrada && !g->directorio[i].ordenTop)
+			return i;
+
+	return -1;
+}
+
+
+int ordenTopBasico(Grafo *g) {
+	int orden, v, w;
+	pArco p;
+
+	for (orden = 1; orden <= g->orden; orden++) {
+		if (-1 == (v = buscarVerticeGradoCeroNoOrdenTop(g)))
+			return -1;
+
+		g->directorio[v].ordenTop = orden;
+		p = g->directorio[v].lista;
+
+		while (p != NULL) {
+			w = p->v;
+			g->directorio[w].gradoEntrada--;
+			p = p->sig;
+		}
+	}
+
+	return 0;
+}
+
+
+int ordenTop(Grafo *g) {
+	int orden, v, w;
+	Cola c;
+	pArco p;
+
+	colaCreaVacia(&c);
+
+	for (v = 1; v <= g->orden; v++)
+		if (!g->directorio[v].gradoEntrada)
+			colaInserta(&c, v);
+
+	orden = 1;
+
+	while (!colaVacia(&c)) {
+		v = colaSuprime(&c);
+		g->directorio[v].ordenTop = orden++;
+		p = g->directorio[v].lista;
+
+		while (p != NULL) {
+			w = p->v;
+
+			if (!--g->directorio[w].gradoEntrada)
+				colaInserta(&c, w);
+
+			p = p->sig;
+		}
+	}
+}
+
+
 void iniciar(Grafo *g) {
 	int i, j, w;
 	pArco p;
