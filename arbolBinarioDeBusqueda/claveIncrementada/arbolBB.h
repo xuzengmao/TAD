@@ -27,6 +27,7 @@
 	int eliminar(ArbolBB *raiz, tipoClave clave);
 
 	tipoNodo *creaNodo(tipoClave clave, tipoInfo info);
+	ArbolBB anula(ArbolBB raiz);
 	void preOrden(ArbolBB raiz);	
 	void enOrden(ArbolBB raiz);
 	void posOrden(ArbolBB raiz);
