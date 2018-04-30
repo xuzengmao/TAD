@@ -21,6 +21,7 @@
 #include "fuenteAuxiliar/cola.h"
 #include "fuenteAuxiliar/pila.h"
 #include "fuenteAuxiliar/monticulo.h"
+#include "fuenteAuxiliar/conjuntos.h"
 
 void profundidad(Grafo *g, int vInicio) {
 	pArco p;
@@ -260,14 +261,14 @@ void dijkstra(Grafo *g, int vInicio) {
 	g->directorio[vInicio].distancia = g->directorio[vInicio].anterior = 0;
 	iniciarMonticulo(&m);
 	x.clave = 0;
-	x.informacion = vInicio;
+	x.informacion.v = vInicio;
 	insertar(&m, x);
 
 	while (!vacioMonticulo(m)) {
 		eliminarMinimo(&m, &x);
 
-		if (!g->directorio[x.informacion].alcanzado) {
-			v = x.informacion;
+		if (!g->directorio[x.informacion.v].alcanzado) {
+			v = x.informacion.v;
 			g->directorio[v].alcanzado++;
 			p = g->directorio[v].lista;
 
@@ -281,7 +282,7 @@ void dijkstra(Grafo *g, int vInicio) {
 						g->directorio[w].distancia = coste;
 						g->directorio[w].anterior = v;
 						x.clave = coste;
-						x.informacion = w;
+						x.informacion.v = w;
 						insertar(&m, x);
 					}
 				}
@@ -341,61 +342,75 @@ int buscarVerticeCostoMinimoNoAlcanzado(Grafo *g) {
 	return v;
 }
 
+
+void construirMonticuloDeAristas(Grafo *g, Monticulo *m) {
+	int i;
+	pArco p;
+	tipoElemento x;
+
+	iniciarMonticulo(m);
+
+	for (i = 1; i <= g->orden; i++) {
+		p = g->directorio[i].lista;
+
+		while (p != NULL) {
+			x.clave = p->peso;
+			x.informacion.v = i;
+			x.informacion.w = p->v;
+			insertar(m, x);
+			p = p->sig;
+		}
+	}
+}
+
+void aceptarArista(Grafo *g, tipoElemento x) {
+	pArco p;
+	int i;
+
+	if (NULL == (p = malloc(sizeof(arco)))) {
+		liberarListas(g);
+		free(g);
+		g = NULL;
+	} else {
+		p->v = x.informacion.w;
+		p->peso = x.clave;
+		p->sig = g->directorio[x.informacion.v].lista;
+		g->directorio[x.informacion.v].lista = p;
+
+		if (NULL == (p = malloc(sizeof(arco)))) {
+			liberarListas(g);
+			free(g);
+			g = NULL;
+		} else {
+			p->v = x.informacion.v;
+			p->peso = x.clave;
+			p->sig = g->directorio[x.informacion.w].lista;
+			g->directorio[x.informacion.w].lista = p;
+		}
+	}
+}
+
+
 Grafo *crearArbolDeExpansion(Grafo *g) {
 	Grafo *arbol;
-	pArco p, aBorrar;
-	int v, w;
+	tipoElemento x;
+	int i;
 
 	if (NULL == (arbol = calloc(1, sizeof(Grafo))))
 		return NULL;
 
 	arbol->orden = g->orden;
 
-	for (v = 1; v <= g->orden; v++) {
-		w = g->directorio[v].anterior;
+	for (i = 1; i <= g->orden; i++) {
+		x.clave = g->directorio[i].peso;
+		x.informacion.v = i;
+		x.informacion.w = g->directorio[i].anterior;
 
-		if (w) {
-			if (NULL == (p = malloc(sizeof(arco)))) {
-				for (v = 1; v <= g->orden; v++) {
-					p = arbol->directorio[v].lista;
-					arbol->directorio[v].lista = NULL;
-
-					while (p != NULL) {
-						aBorrar = p;
-						p = p->sig;
-						free(aBorrar);
-					}
-				}
-
-				free(arbol);
+		if (x.informacion.w) {
+			aceptarArista(arbol, x);
+			
+			if (arbol == NULL)
 				return NULL;
-			}
-
-			p->v = w;
-			p->peso = g->directorio[v].peso;
-			p->sig = arbol->directorio[v].lista;
-			arbol->directorio[v].lista = p;
-
-			if (NULL == (p = malloc(sizeof(arco)))) {
-				for (v = 1; v <= g->orden; v++) {
-					p = arbol->directorio[v].lista;
-					arbol->directorio[v].lista = NULL;
-
-					while (p != NULL) {
-						aBorrar = p;
-						p = p->sig;
-						free(aBorrar);
-					}
-				}
-
-				free(arbol);
-				return NULL;
-			}
-
-			p->v = v;
-			p->peso = g->directorio[v].peso;
-			p->sig = arbol->directorio[w].lista;
-			arbol->directorio[w].lista = p;
 		}
 	}
 
@@ -441,14 +456,14 @@ Grafo *prim(Grafo *g) {
 	g->directorio[vInicio].peso = g->directorio[vInicio].anterior = 0;
 	iniciarMonticulo(&m);
 	x.clave = 0;
-	x.informacion = vInicio;
+	x.informacion.v = vInicio;
 	insertar(&m, x);
 
 	while (!vacioMonticulo(m)) {
 		eliminarMinimo(&m, &x);
 
-		if (!g->directorio[x.informacion].alcanzado) {
-			v = x.informacion;
+		if (!g->directorio[x.informacion.v].alcanzado) {
+			v = x.informacion.v;
 			g->directorio[v].alcanzado++;
 			p = g->directorio[v].lista;
 
@@ -460,7 +475,7 @@ Grafo *prim(Grafo *g) {
 						g->directorio[w].peso = p->peso;
 						g->directorio[w].anterior = v;
 						x.clave = p->peso;
-						x.informacion = w;
+						x.informacion.v = w;
 						insertar(&m, x);
 					}
 				}
@@ -475,7 +490,42 @@ Grafo *prim(Grafo *g) {
 
 
 Grafo *kruskal(Grafo *g) {
+	Monticulo m;
+	int nAristasAceptadas = 0;
+	particion C;
+	tipoConjunto conjuntoV, conjuntoW;
+	tipoElemento x;
+	Grafo *arbolExp;
 
+	if (NULL == (arbolExp = calloc(1, sizeof(Grafo))))
+		return NULL;
+
+	arbolExp->orden = g->orden;
+
+	crea(C);
+	construirMonticuloDeAristas(g, &m);
+
+	while (nAristasAceptadas < g->orden - 1) {
+		if (-1 == eliminarMinimo(&m, &x)) {
+			liberarListas(arbolExp);
+			free(arbolExp);
+			return NULL;
+		}
+		
+		conjuntoV = buscar(C, x.informacion.v);
+		conjuntoW = buscar(C, x.informacion.w);
+
+		if (conjuntoV != conjuntoW) {
+			unir(C, conjuntoV, conjuntoW);
+			nAristasAceptadas++;
+			aceptarArista(arbolExp, x);
+			
+			if (arbolExp == NULL)
+				return NULL;
+		}
+	}
+
+	return arbolExp;
 }
 
 

@@ -17,9 +17,9 @@
 #ifndef __CONJUNTOS_H
 #define __CONJUNTOS_H
 
-#define MAXIMO 16
+#define MAX 10
 
-typedef int particion[MAXIMO];
+typedef int particion[MAX];
 typedef int tipoConjunto;
 typedef int tipoElementoC;
 

@@ -17,6 +17,8 @@
 #ifndef __GRAFOS_H
 #define __GRAFOS_H
 
+#include "fuenteAuxiliar/monticulo.h"
+
 #define N 10
 #define INF 999999
 
@@ -64,6 +66,8 @@ int costeYTrayectoria(Grafo *g, int vInicio, int vFin);
 void todosCaminosMin(Grafo *g, int vInicio);
 
 int buscarVerticeCostoMinimoNoAlcanzado(Grafo *g);
+void construirMonticuloDeAristas(Grafo *g, Monticulo *m);
+void aceptarArista (Grafo *g, tipoElemento x);
 Grafo *crearArbolDeExpansion(Grafo *g);
 Grafo *primBasico(Grafo *g);
 Grafo *prim(Grafo *g);

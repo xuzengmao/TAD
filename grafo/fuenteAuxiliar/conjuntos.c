@@ -23,13 +23,13 @@
 void crea(particion C) {
 	int i;
 
-	for (i = 0; i < MAXIMO; i++)
+	for (i = 0; i < MAX; i++)
 		C[i] = -1;
 }
 
 
 tipoElementoC buscar(particion C, tipoElementoC x) {
-	if (x < 0 || x >= MAXIMO)
+	if (x < 0 || x >= MAX)
 		return -1;
 
 	if (C[x] < 0)
@@ -58,17 +58,17 @@ void verParticion(particion C) {
 
 	printf("\n");
 
-	for (i = 0; i < MAXIMO; i++)
+	for (i = 0; i < MAX; i++)
 		printf("|%2d", C[i]);
 
 	printf("| contenido vector\n");
 
-	for (i = 0; i < MAXIMO; i++)
+	for (i = 0; i < MAX; i++)
 		printf("---");
 
 	printf("\n");
 
-	for (i = 0; i < MAXIMO; i++)
+	for (i = 0; i < MAX; i++)
 		printf(" %2d", i);
 
 	printf("  indice vector\n\n");
