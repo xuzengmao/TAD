@@ -432,7 +432,45 @@ Grafo *primBasico(Grafo *g) {
 
 
 Grafo *prim(Grafo *g) {
+	pArco p;
+	int i, v, w;
+	Monticulo m;
+	tipoElemento x;
+	int vInicio = 1;
 
+	g->directorio[vInicio].peso = g->directorio[vInicio].anterior = 0;
+	iniciarMonticulo(&m);
+	x.clave = 0;
+	x.informacion = vInicio;
+	insertar(&m, x);
+
+	while (!vacioMonticulo(m)) {
+		eliminarMinimo(&m, &x);
+
+		if (!g->directorio[x.informacion].alcanzado) {
+			v = x.informacion;
+			g->directorio[v].alcanzado++;
+			p = g->directorio[v].lista;
+
+			while (p != NULL) {
+				w = p->v;
+
+				if (!g->directorio[w].alcanzado) {
+					if (p->peso < g->directorio[w].peso) {
+						g->directorio[w].peso = p->peso;
+						g->directorio[w].anterior = v;
+						x.clave = p->peso;
+						x.informacion = w;
+						insertar(&m, x);
+					}
+				}
+
+				p = p->sig;
+			}
+		}
+	}
+
+	return crearArbolDeExpansion(g);
 }
 
 
