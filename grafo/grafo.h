@@ -63,6 +63,8 @@ void dijkstra(Grafo *g, int vInicio);
 int costeYTrayectoria(Grafo *g, int vInicio, int vFin);
 void todosCaminosMin(Grafo *g, int vInicio);
 
+int buscarVerticeCostoMinimoNoAlcanzado(Grafo *g);
+Grafo *crearArbolDeExpansion(Grafo *g);
 Grafo *primBasico(Grafo *g);
 Grafo *prim(Grafo *g);
 Grafo *kruskal(Grafo *g);

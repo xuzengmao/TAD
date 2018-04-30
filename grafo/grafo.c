@@ -329,6 +329,118 @@ void todosCaminosMin(Grafo *g, int vInicio) {
 }
 
 
+int buscarVerticeCostoMinimoNoAlcanzado(Grafo *g) {
+	int i, costoMinimo = INF + 1, v = -1;
+
+	for (i = 1; i <= g->orden; i++)
+		if (!g->directorio[i].alcanzado && g->directorio[i].peso < costoMinimo) {
+			costoMinimo = g->directorio[i].peso;
+			v = i;
+		}
+
+	return v;
+}
+
+Grafo *crearArbolDeExpansion(Grafo *g) {
+	Grafo *arbol;
+	pArco p, aBorrar;
+	int v, w;
+
+	if (NULL == (arbol = calloc(1, sizeof(Grafo))))
+		return NULL;
+
+	arbol->orden = g->orden;
+
+	for (v = 1; v <= g->orden; v++) {
+		w = g->directorio[v].anterior;
+
+		if (w) {
+			if (NULL == (p = malloc(sizeof(arco)))) {
+				for (v = 1; v <= g->orden; v++) {
+					p = arbol->directorio[v].lista;
+					arbol->directorio[v].lista = NULL;
+
+					while (p != NULL) {
+						aBorrar = p;
+						p = p->sig;
+						free(aBorrar);
+					}
+				}
+
+				free(arbol);
+				return NULL;
+			}
+
+			p->v = w;
+			p->peso = g->directorio[v].peso;
+			p->sig = arbol->directorio[v].lista;
+			arbol->directorio[v].lista = p;
+
+			if (NULL == (p = malloc(sizeof(arco)))) {
+				for (v = 1; v <= g->orden; v++) {
+					p = arbol->directorio[v].lista;
+					arbol->directorio[v].lista = NULL;
+
+					while (p != NULL) {
+						aBorrar = p;
+						p = p->sig;
+						free(aBorrar);
+					}
+				}
+
+				free(arbol);
+				return NULL;
+			}
+
+			p->v = v;
+			p->peso = g->directorio[v].peso;
+			p->sig = arbol->directorio[w].lista;
+			arbol->directorio[w].lista = p;
+		}
+	}
+
+	return arbol;
+}
+
+Grafo *primBasico(Grafo *g) {
+	pArco p;
+	int i, v, w;
+	int vInicio = 1;
+
+	g->directorio[vInicio].peso = g->directorio[vInicio].anterior = 0;
+
+	for (i = 1; i <= g->orden; i++) {
+		v = buscarVerticeCostoMinimoNoAlcanzado(g);
+		g->directorio[v].alcanzado++;
+		p = g->directorio[v].lista;
+
+		while (p != NULL) {
+			w = p->v;
+
+			if (!g->directorio[w].alcanzado)
+				if (g->directorio[w].peso > p->peso) {
+					g->directorio[w].peso = p->peso;
+					g->directorio[w].anterior = v;
+				}
+		
+			p = p->sig;
+		}
+	}
+
+	return crearArbolDeExpansion(g);
+}
+
+
+Grafo *prim(Grafo *g) {
+
+}
+
+
+Grafo *kruskal(Grafo *g) {
+
+}
+
+
 void iniciar(Grafo *g) {
 	int i, j, w;
 	pArco p;
