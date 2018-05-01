@@ -14,5 +14,4 @@ Información: este es un repositorio de tipos abstractos de datos con diferentes
 Referencias: 
     
     - Transparencias de la asignatura Estructuras de Datos y Algoritmos I, M. J. Polo Martín e Iván Álvarez Navia.
-    
     - Transparencias de la asignatura Estructuras de Datos y Algoritmos II, M. J. Polo Martín.
