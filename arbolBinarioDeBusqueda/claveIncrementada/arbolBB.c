@@ -16,11 +16,9 @@
 
 int insertar(ArbolBB *raiz, tipoClave clave) {
 	if (*raiz == NULL) {
-		if (NULL == (*raiz = malloc(sizeof(tipoNodo))))
+		if (NULL == (*raiz = creaNodo(clave, 1)))
 			return -1;
 
-		(*raiz)->clave = clave;
-		(*raiz)->info = 1;
 		return 0;
 	}
 
