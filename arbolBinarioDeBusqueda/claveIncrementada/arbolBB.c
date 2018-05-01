@@ -53,7 +53,45 @@ int buscar(ArbolBB raiz, tipoClave clave, tipoNodo **nodo) {
 
 
 int eliminar(ArbolBB *raiz, tipoClave clave) {
+	ArbolBB aux, ant;
+	tipoInfo nVeces;
 
+	if (*raiz == NULL)
+		return 0;
+
+	if (clave < (*raiz)->clave)
+		return eliminar(&(*raiz)->izq, clave);
+
+	if (clave > (*raiz)->clave)
+		return eliminar(&(*raiz)->der, clave);
+
+	aux = *raiz;
+	nVeces = (*raiz)->info;
+
+	if (aux->der == NULL)
+		*raiz = aux->izq;
+	else if (aux->izq == NULL)
+		*raiz = aux->der;
+	else {
+		ant = aux;
+		aux = aux->der;
+
+		while (aux->izq) {
+			ant = aux;
+			aux = aux->izq;
+		}
+
+		(*raiz)->clave = aux->clave;
+		(*raiz)->info = aux->info;
+
+		if (ant == *raiz)
+			ant->der = aux->der;
+		else
+			ant->izq = aux->der;
+	}
+
+	free(aux);
+	return nVeces;
 }
 
 
