@@ -151,7 +151,7 @@ int ordenTop(Grafo *g) {
 		}
 	}
 
-	if (orden == g->orden)
+	if (orden == g->orden + 1)
 		return 0;
 
 	return -1;
