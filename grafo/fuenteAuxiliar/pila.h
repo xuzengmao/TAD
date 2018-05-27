@@ -23,12 +23,12 @@ typedef int tipoElementoP;
 #define TIPO_CELDA
 
 typedef struct tipoCelda { 
-	tipoElementoP elemento; 
-	struct tipoCelda * sig; 
-	} tipoCelda;
-	
+    tipoElementoP elemento; 
+    struct tipoCelda * sig; 
+    } tipoCelda;
+    
 #endif
-	
+    
 typedef tipoCelda * Pila;
 
 int pilaCreaVacia(Pila *p);

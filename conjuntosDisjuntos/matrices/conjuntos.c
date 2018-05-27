@@ -16,59 +16,59 @@
 
 
 void crea(particion C) {
-	int i;
+    int i;
 
-	for (i = 0; i < MAXIMO; i++)
-		C[i] = i;
+    for (i = 0; i < MAXIMO; i++)
+        C[i] = i;
 }
 
 
 tipoElemento buscar(particion C, tipoElemento x) {
-	return C[x];
+    return C[x];
 }
 
 
 void unir(particion C, tipoElemento x, tipoElemento y) {
-	int i;
-	tipoElemento temp =C[y];
+    int i;
+    tipoElemento temp =C[y];
 
-	for (i = 0; i < MAXIMO; i++)
-		if (C[i] == temp)
-			C[i] = C[x];
+    for (i = 0; i < MAXIMO; i++)
+        if (C[i] == temp)
+            C[i] = C[x];
 }
 
 
 void verParticion(particion C) {
-	int i;
+    int i;
 
-	printf("\n");
+    printf("\n");
 
-	for (i = 0; i < MAXIMO; i++)
-		printf("|%2d", C[i]);
+    for (i = 0; i < MAXIMO; i++)
+        printf("|%2d", C[i]);
 
-	printf("| contenido vector\n");
+    printf("| contenido vector\n");
 
-	for (i = 0; i < MAXIMO; i++)
-		printf("---");
+    for (i = 0; i < MAXIMO; i++)
+        printf("---");
 
-	printf("\n");
+    printf("\n");
 
-	for (i = 0; i < MAXIMO; i++)
-		printf(" %2d", i);
+    for (i = 0; i < MAXIMO; i++)
+        printf(" %2d", i);
 
-	printf("  indices vector\n\n");
+    printf("  indices vector\n\n");
 }
 
 
 void verClaseEquivalencia(particion C, tipoElemento x) {
-	int i, representante;
+    int i, representante;
 
-	representante = buscar(C, x);
-	printf("\n\nClase de Equivalencia de %d cuyo representante es %d: ", x, representante);
+    representante = buscar(C, x);
+    printf("\n\nClase de Equivalencia de %d cuyo representante es %d: ", x, representante);
 
-	for (i = 0; i < MAXIMO; i++)
-		if (C[i] == representante)
-			printf("%d ", i);
+    for (i = 0; i < MAXIMO; i++)
+        if (C[i] == representante)
+            printf("%d ", i);
 
-	printf("\n");
+    printf("\n");
 }

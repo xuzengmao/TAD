@@ -18,8 +18,8 @@
 typedef char tipoInfo;
 
 typedef struct tipoNodo {
-	tipoInfo info;
-	struct tipoNodo *izq, *der;
+    tipoInfo info;
+    struct tipoNodo *izq, *der;
 } tipoNodo;
 
 typedef tipoNodo *Arbol;

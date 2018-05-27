@@ -16,10 +16,10 @@
 typedef int tipoElemento;
 
 typedef struct {
-	int tamagno;
+    int tamagno;
     int frente, fondo;
-	tipoElemento elementos[MAX];
-	} Cola;
+    tipoElemento elementos[MAX];
+    } Cola;
 
 
 int colaCreaVacia(Cola *c);

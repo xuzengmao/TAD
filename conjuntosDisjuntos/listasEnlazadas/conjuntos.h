@@ -20,14 +20,14 @@ typedef int tipoElemento;
 #define TIPO_CELDA
 
 typedef struct tipoCelda {
-	tipoElemento elemento;
-	struct tipoCelda *sig;
+    tipoElemento elemento;
+    struct tipoCelda *sig;
 } tipoCelda;
 
 #endif
 
 typedef struct {
-	tipoCelda *primero, *ultimo;
+    tipoCelda *primero, *ultimo;
 } tipoLista;
 
 typedef tipoLista particion[MAXIMO];

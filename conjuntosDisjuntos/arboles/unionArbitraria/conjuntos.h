@@ -14,8 +14,6 @@
 
 #define MAXIMO 16
 
-typedef int tipoElemento;
-
 typedef int particion[MAXIMO];
 typedef int tipoConjunto;
 typedef int tipoElemento;

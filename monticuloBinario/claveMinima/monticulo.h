@@ -18,13 +18,13 @@ typedef int tipoClave;
 typedef int tipoInfo;
 
 typedef struct {
-	tipoClave clave;
-	tipoInfo informacion;
+    tipoClave clave;
+    tipoInfo informacion;
 } tipoElemento;
 
 typedef struct {
-	tipoElemento elemento[MAXIMO];
-	int tamanno;
+    tipoElemento elemento[MAXIMO];
+    int tamanno;
 } Monticulo;
 
 void iniciarMonticulo(Monticulo *m);

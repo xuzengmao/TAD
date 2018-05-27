@@ -23,26 +23,26 @@
 #define INF 999999
 
 typedef struct arco {
-	int v;
-	int peso;
-	struct arco *sig;
+    int v;
+    int peso;
+    struct arco *sig;
 } arco;
 
 typedef arco *pArco;
 
 typedef struct {
-	int alcanzado;
-	int gradoEntrada;
-	int ordenTop;
-	int distancia;
-	int peso;
-	int anterior;
-	pArco lista;
+    int alcanzado;
+    int gradoEntrada;
+    int ordenTop;
+    int distancia;
+    int peso;
+    int anterior;
+    pArco lista;
 } vertices;
 
 typedef struct {
-	vertices directorio[N];
-	int orden;
+    vertices directorio[N];
+    int orden;
 } Grafo;
 
 void profundidad(Grafo *g, int vInicio);

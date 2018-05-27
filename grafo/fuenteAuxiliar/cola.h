@@ -23,10 +23,10 @@ typedef int tipoElementoC;
 #define TIPO_CELDA
 
 typedef struct tipoCelda { 
-	tipoElementoC elemento; 
-	struct tipoCelda * sig; 
-	} tipoCelda;
-	
+    tipoElementoC elemento; 
+    struct tipoCelda * sig; 
+    } tipoCelda;
+    
 #endif
 
 typedef struct {

@@ -23,10 +23,10 @@ typedef Arbol tipoElemento;
 #define TIPO_CELDA
 
 typedef struct tipoCelda { 
-	tipoElemento elemento; 
-	struct tipoCelda * sig; 
-	} tipoCelda;
-	
+    tipoElemento elemento; 
+    struct tipoCelda * sig; 
+    } tipoCelda;
+    
 #endif
 
 typedef struct {

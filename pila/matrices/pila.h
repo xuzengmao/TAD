@@ -19,7 +19,7 @@ typedef struct {
     int tope;
     tipoElemento elementos[MAX];
 } Pila;
-	
+
 int pilaCreaVacia(Pila *p);
 int pilaVacia(Pila *p);
 int pilaInserta(Pila *p, tipoElemento elemento);
