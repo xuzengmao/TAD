@@ -67,7 +67,7 @@ void todosCaminosMin(Grafo *g, int vInicio);
 
 int buscarVerticeCostoMinimoNoAlcanzado(Grafo *g);
 void construirMonticuloDeAristas(Grafo *g, Monticulo *m);
-void aceptarArista (Grafo *g, tipoElemento x);
+void aceptarArista (Grafo **g, tipoElemento x);
 Grafo *crearArbolDeExpansion(Grafo *g);
 Grafo *primBasico(Grafo *g);
 Grafo *prim(Grafo *g);

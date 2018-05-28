@@ -254,7 +254,7 @@ void dijkstraBasico(Grafo *g, int vInicio) {
 
 void dijkstra(Grafo *g, int vInicio) {
     pArco p;
-    int i, v, w, coste;
+    int v, w, coste;
     Monticulo m;
     tipoElemento x;
 
@@ -363,29 +363,29 @@ void construirMonticuloDeAristas(Grafo *g, Monticulo *m) {
     }
 }
 
-void aceptarArista(Grafo *g, tipoElemento x) {
+void aceptarArista(Grafo **g, tipoElemento x) {
     pArco p;
     int i;
 
     if (NULL == (p = malloc(sizeof(arco)))) {
-        liberarListas(g);
-        free(g);
-        g = NULL;
+        liberarListas(*g);
+        free(*g);
+        *g = NULL;
     } else {
         p->v = x.informacion.w;
         p->peso = x.clave;
-        p->sig = g->directorio[x.informacion.v].lista;
-        g->directorio[x.informacion.v].lista = p;
+        p->sig = (*g)->directorio[x.informacion.v].lista;
+        (*g)->directorio[x.informacion.v].lista = p;
 
         if (NULL == (p = malloc(sizeof(arco)))) {
-            liberarListas(g);
-            free(g);
-            g = NULL;
+            liberarListas(*g);
+            free(*g);
+            *g = NULL;
         } else {
             p->v = x.informacion.v;
             p->peso = x.clave;
-            p->sig = g->directorio[x.informacion.w].lista;
-            g->directorio[x.informacion.w].lista = p;
+            p->sig = (*g)->directorio[x.informacion.w].lista;
+            (*g)->directorio[x.informacion.w].lista = p;
         }
     }
 }
@@ -407,7 +407,7 @@ Grafo *crearArbolDeExpansion(Grafo *g) {
         x.informacion.w = g->directorio[i].anterior;
 
         if (x.informacion.w) {
-            aceptarArista(arbol, x);
+            aceptarArista(&arbol, x);
             
             if (arbol == NULL)
                 return NULL;
@@ -518,7 +518,7 @@ Grafo *kruskal(Grafo *g) {
         if (conjuntoV != conjuntoW) {
             unir(C, conjuntoV, conjuntoW);
             nAristasAceptadas++;
-            aceptarArista(arbolExp, x);
+            aceptarArista(&arbolExp, x);
             
             if (arbolExp == NULL)
                 return NULL;
