@@ -10,7 +10,8 @@
 
 
 #ifndef __SECUENCIAL_H
-#define __SECUENCIAL_H
+    #define __SECUENCIAL_H
+
 
     /*   BLOQUE modificable por el usuario, obligatorio:                    *
      *     -> Typedef con identificador RegistroFichSec: para el tipo de    *
@@ -20,14 +21,17 @@
      *     -> Función tipo imprimirRegSec: para imprimir un registro.       *
      *     -> Función tipo compararRegSecConClave: para comparar una clave  *
      *     con un registro.                                                 */
-    
-    typedef struct {
-        char dni[9];
-        char nombre[19];
-        char ape1[19];
-        char ape2[19];
-        char provincia[11];
-    } Alumno;
+
+    #ifndef ALUMNO
+        #define ALUMNO
+        typedef struct {
+            char dni[9];
+            char nombre[19];
+            char ape1[19];
+            char ape2[19];
+            char provincia[11];
+        } Alumno;
+    #endif
 
     typedef Alumno RegistroFichSec;
     typedef char *ClaveRegFichSec;
@@ -39,14 +43,14 @@
 
 
     typedef void (*ImprimirRegSec) (RegistroFichSec *reg, int *cont);
-    typedef int (*CompararRegSecConClave) (RegistroFicSec *reg, 
-                                            ClaveRegFichSec clave);
+    typedef int (*CompararRegSecConClave) (RegistroFichSec *reg, 
+                                           ClaveRegFichSec clave);
 
 
     /*   Funciones para el uso del usuario. */
 
     int leerFichSec(char *fich, ImprimirRegSec fImprimir);
-    int buscarRegFichSec(FILE *fp, CompararRegConClave fComparar, 
+    int buscarRegFichSec(FILE *fp, CompararRegSecConClave fComparar, 
                          RegistroFichSec *reg, ClaveRegFichSec clave);
     int insertarRegFichSec(char *fich, RegistroFichSec *reg);
 #endif
