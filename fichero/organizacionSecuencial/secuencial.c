@@ -45,7 +45,7 @@ int leerFichSec(char *fich, ImprimirRegSec fImprimir) {
     if (fich == NULL) {
         #ifdef DEBUG
             fprintf(stderr, "ERROR:secuencial.c:leerFichSec: el parametro "
-                            " \"fich\" es NULL.\n");
+                            "\"fich\" es NULL.\n");
         #endif
 
         return -1;
@@ -54,7 +54,7 @@ int leerFichSec(char *fich, ImprimirRegSec fImprimir) {
     if (fImprimir == NULL) {
         #ifdef DEBUG
             fprintf(stderr, "ERROR:secuencial.c:leerFichSec: el parametro "
-                            " \"fImprimir\" es NULL.\n");
+                            "\"fImprimir\" es NULL.\n");
         #endif
 
         return -2;
@@ -80,7 +80,45 @@ int leerFichSec(char *fich, ImprimirRegSec fImprimir) {
 int buscarRegFichSec(FILE *fp, CompararRegSecConClave fComparar, 
                      RegistroFichSec *reg, ClaveRegFichSec clave)
 {
+    int cont = 0;
 
+    if (fp == NULL) {
+        #ifdef DEBUG
+            fprintf(stderr, "ERROR:secuencial.c:buscarRegFichSec: el "
+                            "parametro \"fp\" es NULL.\n");
+        #endif
+
+        return -2;
+    }
+
+    if (fComparar == NULL) {
+        #ifdef DEBUG
+            fprintf(stderr, "ERROR:secuencial.c:buscarRegFichSec: el "
+                            "parametro \"fComparar\" es NULL.\n");
+        #endif
+
+        return -3;
+    }
+
+    if (reg == NULL) {
+        #ifdef DEBUG
+            fprintf(stderr, "ERROR:secuencial.c:buscarRegFichSec: el "
+                            "parametro \"reg\" es NULL.\n");
+        #endif
+
+        return -4;
+    }
+
+    fseek(fp, 0, SEEK_SET);
+
+    while (fread(reg, sizeof(RegistroFichSec), 1, fp)) {
+        if (!fComparar(reg, clave))
+            return cont;
+
+        cont++;
+    }
+
+    return -1;
 }
 
 
