@@ -448,7 +448,7 @@ Grafo *primBasico(Grafo *g) {
 
 Grafo *prim(Grafo *g) {
     pArco p;
-    int i, v, w;
+    int v, w;
     Monticulo m;
     tipoElemento x;
     int vInicio = 1;
@@ -470,7 +470,7 @@ Grafo *prim(Grafo *g) {
             while (p != NULL) {
                 w = p->v;
 
-                if (!g->directorio[w].alcanzado) {
+                if (!g->directorio[w].alcanzado)
                     if (p->peso < g->directorio[w].peso) {
                         g->directorio[w].peso = p->peso;
                         g->directorio[w].anterior = v;
@@ -478,7 +478,6 @@ Grafo *prim(Grafo *g) {
                         x.informacion.v = w;
                         insertar(&m, x);
                     }
-                }
 
                 p = p->sig;
             }
