@@ -63,7 +63,7 @@ int leerFichSec(char *fich, ImprimirRegSec fImprimir) {
     if (NULL == (fp = fopen(fich, "rb"))) {
         #ifdef DEBUG
             fprintf(stderr, "ERROR:secuencial.c:leerFichSec: error al abrir "
-                            "el fichero.\n");
+                            "el fichero -> %s.\n", fich);
         #endif
                
         return -3;
@@ -123,5 +123,48 @@ int buscarRegFichSec(FILE *fp, CompararRegSecConClave fComparar,
 
 
 int insertarRegFichSec(char *fich, RegistroFichSec *reg) {
+    FILE *fp;
+    RegistroFichSec registro;
+    int cont;
 
+    if (fich == NULL) {
+        #ifdef DEBUG
+            fprintf(stderr, "ERROR:secuencial.c:insertarRegFichSec: el "
+                            "parametro \"fich\" es NULL.\n");
+        #endif
+
+        return -2;
+    }
+
+    if (reg == NULL) {
+        #ifdef DEBUG
+            fprintf(stderr, "ERROR:secuencial.c:insertarRegFichSec: el "
+                            "parametro \"reg\" es NULL.\n");
+        #endif
+
+        return -3;
+    }
+
+    if (NULL == (fp = fopen(fich, "ab"))) {
+        #ifdef DEBUG
+            fprintf(stderr, "ERROR:secuencial.c:insertarRegFichSec: error "
+                            "al abrir el fichero -> %s.\n", fich);
+        #endif
+
+        return -4;
+    }
+
+    cont = ftell(fp)/sizeof(RegistroFichSec);
+
+    if (1 > fwrite(reg, sizeof(RegistroFichSec), 1, fp)) {
+        #ifdef DEBUG
+            fprintf(stderr, "ERROR:secuencial.c:insertarRegFichSec: error "
+                            "al escribir el registro en el fichero.\n");
+        #endif
+
+        return -1;
+    }
+
+    fclose(fp);
+    return cont;
 }
